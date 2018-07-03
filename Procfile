@@ -1,0 +1,1 @@
+web: java -jar backend/target/WalletForTeamBe-1.jar

@@ -35,6 +35,12 @@ public class WalletForTeamRESTServices {
     LoginService loginService;
 
     @CrossOrigin(origins = "${clientcors.url}")
+    @RequestMapping(value = "/")
+    public String index() {
+        return "index.html";
+    }
+
+    @CrossOrigin(origins = "${clientcors.url}")
     @GetMapping(path = "/Payments/{eventid}/{token}", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public List<Payment> calculatePayments(@PathVariable String eventid, @PathVariable  String token) throws JsonProcessingException {
