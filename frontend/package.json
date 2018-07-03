@@ -1,0 +1,46 @@
+{
+  "name": "WalletForTeam",
+  "version": "0.1.0",
+  "description": "Tool to manage spendings with a group of persons",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:https://github.com/mihkelmartin/WalletForTeam.git"
+  },
+  "keywords": [
+    "jquery",
+    "spring",
+    "data",
+    "react"
+  ],
+  "author": "Mihkel Märtin",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "https://github.com/mihkelmartin/WalletForTeam.git",
+  "dependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-router-dom": "^4.3.1",
+    "jquery": "^3.3.1",
+    "webpack": "^4.8.2",
+    "webpack-cli": "^2.1.3",
+    "react-google-recaptcha":"^0.11.1",
+    "react-async-script":"^0.9.1",
+    "react-modal":"^3.4.5",
+    "react-table":"^6.8.6"
+  },
+  "scripts": {
+    "watch": "webpack --watch -d",
+    "start:dev": "webpack-dev-server --config webpack.config.js --content-base src/main/resources/static --inline --hot"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "webpack-dev-server": "^3.1.4"
+  }
+}
