@@ -6,7 +6,7 @@ module.exports = {
     entry: './src/main/js/walletforteam.js',
     devtool: 'sourcemaps',
     devServer: {
-      port: 8080,
+      port: 8090,
       historyApiFallback: true
     },
     cache: true,

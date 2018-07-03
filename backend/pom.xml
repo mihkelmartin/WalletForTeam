@@ -88,6 +88,9 @@
                 <directory>${project.basedir}\..\frontend\src\main\resources\static</directory>
                 <targetPath>static</targetPath>
             </resource>
+            <resource>
+                <directory>${project.basedir}\src\main\resources</directory>
+            </resource>
         </resources>
         <plugins>
             <plugin>
