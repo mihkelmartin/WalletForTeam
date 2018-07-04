@@ -1,5 +1,5 @@
 export const getBackEndUrl=()=>{
-    return 'https://walletforteam.herokuapp.com/';
+    return 'http://walletforteam.herokuapp.com/';
 }
 
 export const dialogStyles = {
