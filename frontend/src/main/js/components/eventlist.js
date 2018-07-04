@@ -11,7 +11,8 @@ class EventList extends React.Component {
     render(){
         var events = this.props.events.map(
             event => <EventElement key={event.id} event={event}
-                onEventSelected={this.props.onEventSelected}/>
+                onEventSelected={this.props.onEventSelected}
+                handleRESTError={this.props.handleRESTError}/>
         );
         return (
             <div className='ui grid center aligned'>

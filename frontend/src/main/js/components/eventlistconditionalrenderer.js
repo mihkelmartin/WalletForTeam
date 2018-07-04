@@ -15,10 +15,13 @@ export function EventListConditionalRender(props){
                             </button>
                         </div>;
 
-    const eventlist =  <EventList key ="eventList" events={props.this.state.events} onEventSelected = {props.this.props.onEventSelected}/>;
+    const eventlist =  <EventList key ="eventList" events={props.this.state.events}
+                                onEventSelected = {props.this.props.onEventSelected}
+                                handleRESTError={props.this.props.handleRESTError}/>;
 
     const addevent = <AddEvent key ="addEvent" handleEmailChange={props.this.handleEmailChange}
-                                setNewFormVisibility={props.this.setNewFormVisibility}/>;
+                                setNewFormVisibility={props.this.setNewFormVisibility}
+                                handleRESTError={props.this.props.handleRESTError}/>;
 
     function setNewFormVisibility() {
         props.this.setNewFormVisibility(true);
