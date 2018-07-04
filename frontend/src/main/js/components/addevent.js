@@ -33,7 +33,7 @@ class AddEvent extends React.Component {
           msgText: 'Verifying...'
         });
 
-        var url = getBackEndUrl() + '/Event/add/' + token;
+        var url = getBackEndUrl() + 'Event/add/' + token;
         var eventJson = '{"name" : "' + this.refs.eventNameField.value +
                           '", "ownerEmail" : "' + this.refs.eMailField.value + '"}';
         $.ajax({

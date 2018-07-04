@@ -13,7 +13,7 @@ class Transaction extends React.Component {
              bDeleteDialogOpen : false};
 
     handleDeleteTransaction = () => {
-        var url = getBackEndUrl() + '/Transactions/remove/' + this.props.eventId + '/' +
+        var url = getBackEndUrl() + 'Transactions/remove/' + this.props.eventId + '/' +
                     this.props.token + '/' + this.props.transaction.id;
         $.ajax({
             url: url,
@@ -30,7 +30,7 @@ class Transaction extends React.Component {
     }
 
     handleUpdateTransaction = (newTransaction) => {
-        var url = getBackEndUrl() + '/Transactions/update/' + this.props.eventId + '/' +
+        var url = getBackEndUrl() + 'Transactions/update/' + this.props.eventId + '/' +
                     this.props.token;
         $.ajax({
             url: url,

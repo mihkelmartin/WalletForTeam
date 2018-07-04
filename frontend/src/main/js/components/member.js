@@ -29,7 +29,7 @@ class Member extends React.Component {
     }
 
     handleUpdateMember = (newMember) => {
-        var url = getBackEndUrl() + '/Members/update/' + this.props.eventId + '/' + this.props.token;
+        var url = getBackEndUrl() + 'Members/update/' + this.props.eventId + '/' + this.props.token;
         $.ajax({
             url: url,
             type: "POST",

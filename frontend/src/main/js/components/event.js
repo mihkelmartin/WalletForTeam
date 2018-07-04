@@ -32,7 +32,7 @@ class Event extends React.Component {
     handleEventNameChange = (event) => {
         this.setState({eventName: event.target.value});
         eventObject.name = event.target.value
-        var url = getBackEndUrl() + '/Event/update/' + this.props.token;
+        var url = getBackEndUrl() + 'Event/update/' + this.props.token;
         $.ajax({
             url: url,
             type: "POST",
@@ -48,7 +48,7 @@ class Event extends React.Component {
     }
 
     handleEventDelete = () => {
-        var url = getBackEndUrl() + '/Event/remove/' + this.props.eventId + '/' + this.props.token;
+        var url = getBackEndUrl() + 'Event/remove/' + this.props.eventId + '/' + this.props.token;
         $.ajax({
             url: url,
             dataType: 'text',
