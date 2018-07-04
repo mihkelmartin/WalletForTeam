@@ -16,5 +16,6 @@ public class WebSecurityConfigurerAdapterWFT extends WebSecurityConfigurerAdapte
         http.requiresChannel()
                 .requestMatchers(new RequestHeaderRequestMatcher("x-forwarded-proto", "https"))
                 .requiresSecure();
+        http.csrf().disable();
     }
 }
