@@ -82,7 +82,7 @@ class AddEvent extends React.Component {
                         <ReCAPTCHA
                           ref={(el) => { captcha = el; }}
                           size="invisible"
-                          sitekey="6LdhaFwUAAAAAIorazYNYgkIr_sps2S2hrdMDxRa"
+                          sitekey="6LcyQmIUAAAAAHmSz5TvnQLXMGpjwjMVhEYif9la"
                           onChange={this.onChange}
                         />
 

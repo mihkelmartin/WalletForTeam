@@ -121,7 +121,7 @@ class EventElement extends React.Component{
                 <ReCAPTCHA
                   ref={(el) => { this.captcha = el; }}
                   size="invisible"
-                  sitekey="6LdhaFwUAAAAAIorazYNYgkIr_sps2S2hrdMDxRa"
+                  sitekey="6LcyQmIUAAAAAHmSz5TvnQLXMGpjwjMVhEYif9la"
                   onChange={this.onChange}
                 />
 			</div>
