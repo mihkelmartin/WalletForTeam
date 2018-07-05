@@ -14,7 +14,7 @@ class AddEvent extends React.Component {
         super(props);
 	}
 
-    state = {msgText : 'Fill in and press Enter', eventname : '', email : ''};
+    state = {msgText : '', eventname : '', email : ''};
 
     setResult = (data) => {
         captcha.reset();
@@ -64,21 +64,29 @@ class AddEvent extends React.Component {
                     <div className='header'>
 
                         <div className = "ui fluid input">
-                            <input ref="eventNameField" type="text" maxLength="32" autoFocus placeholder="Event name"/>
+                            <input ref="eventNameField" type="text" required="required" maxLength="32"
+                                autoFocus placeholder="Event name"/>
                         </div>
                         <br></br>
 
                         <div className = "ui fluid input">
-                            <input ref="eMailField" type="email" maxLength="64" placeholder="e-mail"/>
+                            <input ref="eMailField" type="email" required="required"
+                                maxLength="64" placeholder="e-mail"/>
                         </div>
                         <input type="submit" style={{display:"none"}}/>
 
-                        <br></br>
-
-                        <div className = "ui label">
-                            <a>{this.state.msgText}</a>
+                        <div className="ui one column stackable center aligned page grid">
+                           <div className="column twelve wide">
+                                {this.state.msgText}
+                            </div>
                         </div>
-
+                        <div className="ui one column stackable center aligned page grid">
+                           <div className="column twelve wide">
+                                <button className="ui centered icon button" type="submit">
+                                    <i className="save blue icon"></i>
+                                </button>
+                            </div>
+                        </div>
                         <ReCAPTCHA
                           ref={(el) => { captcha = el; }}
                           size="invisible"

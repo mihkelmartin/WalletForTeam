@@ -16,21 +16,23 @@ class MainDashBoard extends React.Component {
         this.setState({
           email: email
         }, () => {
-           var url = getBackEndUrl() + 'Event/find/email/' + this.state.email;
-            $.ajax({
-                url: url,
-                dataType: 'json',
-                cache: false,
-                success: function(data) {
-                    data.sort(function(a,b){
-                        return new Date(b.eventCreatedTS) - new Date(a.eventCreatedTS);
-                    });
-                    this.setState({events: data});
-                }.bind(this),
-                error: function(xhr, status, err) {
-                    this.props.handleRESTError(xhr);
-                }.bind(this)
-            });
+           if(this.state.email){
+               var url = getBackEndUrl() + 'Event/find/email/' + this.state.email;
+                $.ajax({
+                    url: url,
+                    dataType: 'json',
+                    cache: false,
+                    success: function(data) {
+                        data.sort(function(a,b){
+                            return new Date(b.eventCreatedTS) - new Date(a.eventCreatedTS);
+                        });
+                        this.setState({events: data});
+                    }.bind(this),
+                    error: function(xhr, status, err) {
+                        this.props.handleRESTError(xhr);
+                    }.bind(this)
+                });
+            }
         });
     }
 

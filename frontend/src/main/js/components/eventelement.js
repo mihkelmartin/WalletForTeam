@@ -21,7 +21,6 @@ class EventElement extends React.Component{
     onPINLogin = (token) => {
         if(this.pin){
             var url = getBackEndUrl() + 'login/' + this.props.event.id + '/' + this.pin + '/' + token;
-            console.log(url);
             $.ajax({
                 url: url,
                 dataType: 'text',
@@ -39,13 +38,11 @@ class EventElement extends React.Component{
                 }.bind(this)
             });
         }
-        this.captcha.reset();
     }
 
     onPUKLogin = (token) => {
         if(this.puk !== -1){
             var url = getBackEndUrl() + 'puk/' + this.props.event.id + '/' + this.puk + '/' + token;
-            console.log(url);
             $.ajax({
                 url: url,
                 dataType: 'text',
@@ -58,7 +55,6 @@ class EventElement extends React.Component{
                 }.bind(this)
             });
         }
-        this.captcha.reset();
     }
 
     onSubmit = (e) => {
@@ -72,6 +68,7 @@ class EventElement extends React.Component{
             this.onPINLogin(token);
         if(this.loginType === 'PUK')
             this.onPUKLogin(token);
+        this.captcha.reset();
     }
 
     onPinChange = (e) => {
@@ -91,17 +88,23 @@ class EventElement extends React.Component{
 	render() {
         var PINInput;
         if(this.state.loginError === false){
-            PINInput =  <div className = "ui fluid input">
+            PINInput = <div className="ui fluid right action input">
                             <input ref="EventPIN" type="number" min="0" max="999999999"
                                 placeholder="Enter PIN and press ENTER"
                                 value={this.state.pin} onChange={this.onPinChange} onBlur={this.onPinBlur}
-                                    onFocus={this.onPinFocus}/>
+                                onFocus={this.onPinFocus}/>
+                            <button className="ui icon button" type="submit">
+                                <i className="folder blue open icon"></i>
+                            </button>
                         </div>;
         } else {
-            PINInput =  <div className = "ui fluid error input">
+            PINInput =  <div className = "ui fluid right error action input">
                             <input ref="EventPIN" type="number" min="0" max="999999999" placeholder="Incorrect PIN"
                                 value={this.state.pin} onChange={this.onPinChange} onBlur={this.onPinBlur}
                                     onFocus={this.onPinFocus}/>
+                           <button className="ui icon button" type="submit">
+                                <i className="folder blue open icon"></i>
+                            </button>
                         </div>;
         }
 
