@@ -14,13 +14,13 @@ class AddEvent extends React.Component {
         super(props);
 	}
 
-    state = {msgText : '', eventname : '', email : ''};
+    state = {saveButton : 'save icon', eventname : '', email : ''};
 
     setResult = (data) => {
         captcha.reset();
         if(data.id == null){
             this.setState({
-                 msgText: 'Adding new event failed'
+                 saveButton: 'window close red icon'
              });
 
         } else {
@@ -30,7 +30,7 @@ class AddEvent extends React.Component {
     }
     onChange = (token) => {
         this.setState({
-          msgText: 'Verifying...'
+          saveButton: 'ui basic loading button'
         });
 
         var url = getBackEndUrl() + 'Event/add/' + token;
@@ -67,6 +67,7 @@ class AddEvent extends React.Component {
                             <input ref="eventNameField" type="text" required="required" maxLength="32"
                                 autoFocus placeholder="Event name"/>
                         </div>
+
                         <br></br>
 
                         <div className = "ui fluid input">
@@ -75,15 +76,12 @@ class AddEvent extends React.Component {
                         </div>
                         <input type="submit" style={{display:"none"}}/>
 
-                        <div className="ui one column stackable center aligned page grid">
+                        <br></br>
+
+                        <div className="ui one column center aligned grid">
                            <div className="column twelve wide">
-                                {this.state.msgText}
-                            </div>
-                        </div>
-                        <div className="ui one column stackable center aligned page grid">
-                           <div className="column twelve wide">
-                                <button className="ui centered icon button" type="submit">
-                                    <i className="save blue icon"></i>
+                                <button className="ui basic blue button icon" type="submit">
+                                    <i className={this.state.saveButton}></i>
                                 </button>
                             </div>
                         </div>

@@ -93,8 +93,8 @@ class EventElement extends React.Component{
                                 placeholder="Enter PIN and press ENTER"
                                 value={this.state.pin} onChange={this.onPinChange} onBlur={this.onPinBlur}
                                 onFocus={this.onPinFocus}/>
-                            <button className="ui icon button" type="submit">
-                                <i className="folder blue open icon"></i>
+                            <button className="ui basic blue icon button" type="submit">
+                                <i className="folder open icon"></i>
                             </button>
                         </div>;
         } else {
@@ -102,8 +102,8 @@ class EventElement extends React.Component{
                             <input ref="EventPIN" type="number" min="0" max="999999999" placeholder="Incorrect PIN"
                                 value={this.state.pin} onChange={this.onPinChange} onBlur={this.onPinBlur}
                                     onFocus={this.onPinFocus}/>
-                           <button className="ui icon button" type="submit">
-                                <i className="folder blue open icon"></i>
+                           <button className="ui basic blue icon button" type="submit">
+                                <i className="folder open icon"></i>
                             </button>
                         </div>;
         }
