@@ -59,7 +59,7 @@ class TransactionList extends React.Component {
 
             var columns = [];
             columns.push({Header: "",
-                        minWidth: 210,
+                        minWidth: 250,
                          accessor:"transaction",
                         Cell: props => (<Transaction  eventId = {this.props.eventId}
                                             token = {this.props.token} transaction={props.value}

@@ -10,10 +10,6 @@ import {getBackEndUrl} from './getProperties';
 
 class AddEvent extends React.Component {
 
-	constructor(props) {
-        super(props);
-	}
-
     state = {saveButton : 'save icon', eventname : '', email : ''};
 
     setResult = (data) => {

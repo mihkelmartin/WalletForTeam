@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class LoginService {
 
-    public static String newEventMailContent = "Welcome to Wallet for Team !\n\nYour PIN code is:%PIN%\n\n Thank You!";
+    public static String footer = "Thank You!\nYour WalletForTeam team\nwalletforteam.herokuapp.com";
+    public static String newEventMailContent = "Welcome to Wallet for Team !\n\nYour PIN code is:%PIN%\n\n" + footer;
     public static String eventLockedMailContent = "Hi from Wallet for Team !\n\nDue to multiple failed logins Your event was locked.\n" +
             "To unlock it, enter PUK code given below to PIN entry field and click to \'Reset PIN with PUK\' label.\n\nPUK code:%PUK%\n\n" +
-            "Thank You!";
+            footer;
     public static String newPINMailContent = "Hi from Wallet for Team !\n\nNew PIN code was generated!\n\n" +
-            "Your new PIN code is:%PIN%\n\nThank You!";;
+            "Your new PIN code is:%PIN%\n\n" + footer;
 
     @Autowired
     EventService eventService;

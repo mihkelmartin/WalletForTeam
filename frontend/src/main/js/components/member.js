@@ -7,9 +7,13 @@ ReactModal.setAppElement('#react');
 
 class Member extends React.Component {
 
+
+
     state = {member : '',
              prevMember : '',
-             bDeleteDialogOpen : false};
+             bDeleteDialogOpen : false,
+             saveButtonVisible : {nickName : {display:"none"}, eMail :{display:"none"}, bankAccount :{display:"none"}}
+             };
 
     handleDeleteMember = () => {
         var url = getBackEndUrl() + 'Members/remove/' + this.props.eventId + '/' +
@@ -48,7 +52,10 @@ class Member extends React.Component {
     onInputChange = (e) => {
         this.newMember = Object.assign({}, this.state.member);
         this.newMember[e.target.name] = e.target.value;
-        this.setState({member: this.newMember});
+        let newsaveButtonVisible = Object.assign({}, this.state.saveButtonVisible);
+        newsaveButtonVisible[e.target.name] = {display:"block"};
+        this.setState({member: this.newMember, saveButtonVisible : newsaveButtonVisible});
+
         if(e.target.name === 'payor')
             this.saveToDB(e);
     }
@@ -57,6 +64,10 @@ class Member extends React.Component {
         if(this.newMember)
            if(this.newMember[e.target.name] !== this.state.prevMember[e.target.name])
                 this.handleUpdateMember(this.newMember);
+
+        let newsaveButtonVisible = Object.assign({}, this.state.saveButtonVisible);
+        newsaveButtonVisible[e.target.name] = {display:"none"};
+        this.setState({saveButtonVisible : newsaveButtonVisible});
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -94,6 +105,9 @@ class Member extends React.Component {
                         <input type = "text" name="nickName" maxLength="12" size="6" style={{borderColor:'#2185D0'}}
                            value={this.state.member.nickName} onChange = {this.onInputChange}
                            onBlur={this.saveToDB}/>
+                        <button className="ui mini basic green icon button" style={this.state.saveButtonVisible.nickName}>
+                            <i className="ui save icon"></i>
+                        </button>
                     </div>
                 </div>
 				<div className = "two wide light column center aligned">
@@ -107,6 +121,9 @@ class Member extends React.Component {
                         <input type = "email" name="eMail" maxLength="64" style={{borderColor:'#2185D0'}}
                           value={this.state.member.eMail} onChange = {this.onInputChange}
                           onBlur={this.saveToDB}/>
+                        <button className="ui mini basic green icon button" style={this.state.saveButtonVisible.eMail}>
+                            <i className="ui save icon"></i>
+                        </button>
                     </div>
                 </div>
 				<div className = "four wide light column center aligned">
@@ -114,6 +131,9 @@ class Member extends React.Component {
                         <input type = "text" name="bankAccount" maxLength="34" style={{borderColor:'#2185D0'}}
                           value={this.state.member.bankAccount} onChange = {this.onInputChange}
                           onBlur={this.saveToDB}/>
+                        <button className="ui mini basic green icon button" style={this.state.saveButtonVisible.bankAccount}>
+                            <i className="ui save icon"></i>
+                        </button>
                     </div>
                 </div>
                 <div className = "two wide light column center aligned">

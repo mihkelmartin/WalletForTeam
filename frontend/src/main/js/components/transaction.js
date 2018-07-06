@@ -10,7 +10,9 @@ class Transaction extends React.Component {
 
     state = {transaction : '',
              prevTransaction : '',
-             bDeleteDialogOpen : false};
+             bDeleteDialogOpen : false,
+             saveButtonVisible : {display:"none"}
+             };
 
     handleDeleteTransaction = () => {
         var url = getBackEndUrl() + 'Transactions/remove/' + this.props.eventId + '/' +
@@ -50,6 +52,7 @@ class Transaction extends React.Component {
     onInputChange = (e) => {
         this.newTransaction = Object.assign({}, this.state.transaction);
         this.newTransaction[e.target.name] = e.target.value;
+        this.setState({member: this.newMember, saveButtonVisible : {display:"block"}});
    	    this.setState({transaction: this.newTransaction});
     }
 
@@ -57,6 +60,7 @@ class Transaction extends React.Component {
         if(this.newTransaction)
            if(this.newTransaction[e.target.name] !== this.state.prevTransaction[e.target.name])
                 this.handleUpdateTransaction(this.newTransaction);
+        this.setState({saveButtonVisible : {display:"none"}});
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -87,6 +91,9 @@ class Transaction extends React.Component {
                     <input type="text" name = "name" maxLength="48" style={{borderColor:'#2185D0'}}
                         value={this.state.transaction.name} onChange = {this.onInputChange}
                         onBlur={this.saveToDB}/>
+                    <button className="ui mini basic green icon button" style={this.state.saveButtonVisible}>
+                        <i className="ui save icon"></i>
+                    </button>
                 </div>
                 <ReactModal
                     isOpen={this.state.bDeleteDialogOpen}
