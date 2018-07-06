@@ -46,15 +46,21 @@ class Member extends React.Component {
     }
 
     onInputChange = (e) => {
-        const newMember = Object.assign({}, this.state.member);
-        newMember[e.target.name] = e.target.value;
-        this.setState({member: newMember});
-        this.handleUpdateMember(newMember);
+        this.newMember = Object.assign({}, this.state.member);
+        this.newMember[e.target.name] = e.target.value;
+        this.setState({member: this.newMember});
+        if(e.target.name === 'payor')
+            this.saveToDB(e);
+    }
+
+    saveToDB = (e) => {
+        if(this.newMember)
+           if(this.newMember[e.target.name] !== this.state.prevMember[e.target.name])
+                this.handleUpdateMember(this.newMember);
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if(prevState.prevMember.name === nextProps.member.name &&
-           prevState.prevMember.nickName === nextProps.member.nickName &&
+        if(prevState.prevMember.nickName === nextProps.member.nickName &&
             prevState.prevMember.eMail === nextProps.member.eMail &&
             prevState.prevMember.bankAccount === nextProps.member.bankAccount &&
             prevState.prevMember.credit=== nextProps.member.credit &&
@@ -76,45 +82,41 @@ class Member extends React.Component {
 
 	render() {
         var options = this.props.members.map( (member) => <option key={member.id} value={member.id}>
-                                                            {member.name}
+                                                            {member.nickName}
                                                           </option> );
 		return (
             <div className="row">
-				<div className = "three wide light grey column center aligned">
-				    <div className="ui left action input">
+				<div className = "three wide light column center aligned">
+				    <div className="ui fluid left action input">
                         <button className="ui icon button">
                             <i className="trash icon" onClick={this.onMemberDelete}></i>
                         </button>
-                        <input type = "text" name="name" maxLength="24"
-                               value={this.state.member.name} onChange = {this.onInputChange}/>
-				    </div>
-                </div>
-				<div className = "two wide light grey column center aligned">
-				    <div className = "ui fluid input ">
-                        <input type = "text" name="nickName" maxLength="6" size="6"
-                           value={this.state.member.nickName} onChange = {this.onInputChange}/>
+                        <input type = "text" name="nickName" maxLength="12" size="6" style={{borderColor:'#2185D0'}}
+                           value={this.state.member.nickName} onChange = {this.onInputChange}
+                           onBlur={this.saveToDB}/>
                     </div>
                 </div>
-				<div className = "three wide light grey column center aligned">
+				<div className = "two wide light column center aligned">
+                    <select className="ui dropdown" value={this.state.member.payor} name="payor"
+                        style={{borderColor:'#2185D0'}} onChange = {this.onInputChange}>
+                        {options}
+                    </select>
+                </div>
+				<div className = "three wide light column center aligned">
                     <div className = "ui fluid input">
-                        <input type = "email" name="eMail" maxLength="64"
-                          value={this.state.member.eMail} onChange = {this.onInputChange}/>
+                        <input type = "email" name="eMail" maxLength="64" style={{borderColor:'#2185D0'}}
+                          value={this.state.member.eMail} onChange = {this.onInputChange}
+                          onBlur={this.saveToDB}/>
                     </div>
                 </div>
-				<div className = "three wide light grey column center aligned">
+				<div className = "four wide light column center aligned">
 				    <div className = "ui fluid input">
-                        <input type = "text" name="bankAccount" maxLength="34"
-                          value={this.state.member.bankAccount} onChange = {this.onInputChange}/>
+                        <input type = "text" name="bankAccount" maxLength="34" style={{borderColor:'#2185D0'}}
+                          value={this.state.member.bankAccount} onChange = {this.onInputChange}
+                          onBlur={this.saveToDB}/>
                     </div>
                 </div>
-				<div className = "two wide light grey column center aligned">
-				    <div className = "ui fluid input">
-				        <select value={this.state.member.payor} name="payor" onChange = {this.onInputChange}>
-				            {options}
-				        </select>
-                    </div>
-                </div>
-                <div className = "two wide light grey column center aligned">
+                <div className = "two wide light column center aligned">
                     <p>{parseFloat(this.state.member.debit-this.state.member.credit).toFixed(2)}</p>
                 </div>
                 <ReactModal
@@ -122,9 +124,9 @@ class Member extends React.Component {
                     onRequestClose={this.closeModal}
                     style={dialogStyles}
                     contentLabel='Delete Member?'>
-                    <p>This will remove {this.state.member.name} and all related transactionitems</p>
+                    <p>This will remove {this.state.member.nickName} and all related transactionitems</p>
                     <p>from Event!</p>
-                    <p>Remove {this.state.member.name}?</p>
+                    <p>Remove {this.state.member.nickName}?</p>
                     <div className="ui two buttons">
                       <div className="ui basic blue button" onClick={this.handleDeleteMember}>Yes</div>
                       <div className="ui basic blue button" onClick={this.closeModal}>No</div>

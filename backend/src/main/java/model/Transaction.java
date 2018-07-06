@@ -8,6 +8,7 @@ import org.springframework.lang.NonNull;
 
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -21,6 +22,7 @@ public class Transaction implements Comparable<Transaction>, Ordered {
     @Size(max = 48)
     private String name = "";
     private boolean bmanualCalculation = false;
+    private Date transactionCreatedTS;
     private int order = 0;
     private ArrayList<TransactionItem> items = new ArrayList<>();
     @Transient
@@ -29,6 +31,7 @@ public class Transaction implements Comparable<Transaction>, Ordered {
 
     public Transaction(){
         this.id = UUID.randomUUID().toString();
+        setTransactionCreatedTS(new Date());
     }
 
     public void update(Transaction transaction) {
@@ -52,6 +55,14 @@ public class Transaction implements Comparable<Transaction>, Ordered {
 
     public boolean isBmanualCalculation() {
         return bmanualCalculation;
+    }
+
+    public Date getTransactionCreatedTS() {
+        return transactionCreatedTS;
+    }
+
+    public void setTransactionCreatedTS(Date transactionCreatedTS) {
+        this.transactionCreatedTS = transactionCreatedTS;
     }
 
     public void setBmanualCalculation(boolean bmanualCalculation) {

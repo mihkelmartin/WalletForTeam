@@ -100,13 +100,11 @@ public class WalletForTeamRESTServices {
 
             // Add default Member
             Member member = new Member();
-            member.setName("Member1");
-            member.setNickName("M1");
+            member.setNickName("John");
             member.seteMail(event.getOwnerEmail());
             memberService.add(event, member);
-            member.setName("Member2");
-            member.setNickName("M2");
-            member.seteMail("member.2@gmail.com");
+            member.setNickName("Laila");
+            member.seteMail("laila@gmail.com");
             memberService.add(event, member);
 
             // Add default Transaction
@@ -189,8 +187,8 @@ public class WalletForTeamRESTServices {
             if (event.validateToken(token) == SECURITY_TOKEN_VALID) {
                 // Add new Member
                 Member member = new Member();
-                member.setName("New member");
-                member.seteMail("new.member@gmail.com");
+                member.setNickName("New");
+                member.seteMail("new@gmail.com");
                 memberService.add(event, member);
             } else
                 throw new TokenNotValidException("Session expired or security token not valid");

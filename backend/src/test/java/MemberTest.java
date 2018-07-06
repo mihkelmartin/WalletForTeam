@@ -45,10 +45,10 @@ public class MemberTest {
     @Before
     public void initialize(){
         mongoOperations.dropCollection(Event.class);
-        mihkelmock.setName("Mihkel Märtin"); mihkelmock.setNickName("Miku");mihkelmock.seteMail("mihkelmartin@gmail.com");mihkelmock.setBankAccount("");
-        peetermock.setName("Peeter Kutman"); peetermock.setNickName("Peta");
-        tonumock.setName("Tõnu Riisalo"); tonumock.setNickName("Tõnu");
-        laurimock.setName("Lauri Maisvee"); laurimock.setNickName("Lauri");
+        mihkelmock.setNickName("Miku");mihkelmock.seteMail("mihkelmartin@gmail.com");mihkelmock.setBankAccount("");
+        peetermock.setNickName("Peta");
+        tonumock.setNickName("Tõnu");
+        laurimock.setNickName("Lauri");
     }
 
     @Test
@@ -70,7 +70,6 @@ public class MemberTest {
         mihkel = eventService.findMember(event, mihkelid);
         assertNotNull(mihkel);
         assertEquals (mihkelid, mihkel.getId());
-        assertEquals(mihkel.getName(),"Mihkel Märtin");
         assertEquals(mihkel.getNickName(),"Miku");
         assertEquals(mihkel.geteMail(),"mihkelmartin@gmail.com");
         assertEquals(mihkel.getBankAccount(),"");
@@ -85,7 +84,6 @@ public class MemberTest {
         Event event = eventService.add(newEvent);
         Member mihkel = memberService.add(event,mihkelmock);
         String mihkelid = mihkel.getId();
-        mihkelmock.setName("Mihkel Kaarli poeg Märtin");
         mihkelmock.seteMail("kaubavagun@gmail.com");
         mihkelmock.setNickName("Mikuke");
         mihkelmock.setBankAccount("EESwed");
@@ -93,7 +91,6 @@ public class MemberTest {
 
         event = eventService.loadEvent(event.getId());
         mihkel = eventService.findMember(event, mihkelid);
-        assertEquals(mihkel.getName(),"Mihkel Kaarli poeg Märtin");
         assertEquals(mihkel.getNickName(),"Mikuke");
         assertEquals(mihkel.geteMail(),"kaubavagun@gmail.com");
         assertEquals(mihkel.getBankAccount(),"EESwed");

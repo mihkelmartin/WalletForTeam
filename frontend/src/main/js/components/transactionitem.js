@@ -102,12 +102,14 @@ class TransactionItem extends React.Component {
                 <form onSubmit={this.onAddDebit}>
                     <div className="ui input mini">
                        <input type="number" step="0.01" min="0" max="999999" pattern="\d+(\.\d{2})?"
+                                style={{borderColor:'#2185D0'}}
                                 value = {this.state.debit} onChange={this.onDebitChange}/>
                     </div>
                 </form>
                 <form onSubmit={this.onAddCredit}>
                     <div className="ui input mini">
                        <input type="number" step="0.01" min="0" max="999999" pattern="\d+(\.\d{2})?"
+                       style={{borderColor:'#DB2828'}}
                        value = {this.state.credit} onChange={this.onCreditChange}/>
                     </div>
                 </form>

@@ -16,8 +16,8 @@ class MainDashBoard extends React.Component {
         this.setState({
           email: email
         }, () => {
-           if(this.state.email){
-               var url = getBackEndUrl() + 'Event/find/email/' + this.state.email;
+           if(this.state.email && this.state.email.trim().length !== 0){
+               var url = getBackEndUrl() + 'Event/find/email/' + this.state.email.trim();
                 $.ajax({
                     url: url,
                     dataType: 'json',

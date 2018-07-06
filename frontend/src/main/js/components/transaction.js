@@ -48,10 +48,15 @@ class Transaction extends React.Component {
     }
 
     onInputChange = (e) => {
-        const newTransaction = Object.assign({}, this.state.transaction);
-        newTransaction[e.target.name] = e.target.value;
-   	    this.setState({transaction: newTransaction});
-        this.handleUpdateTransaction(newTransaction);
+        this.newTransaction = Object.assign({}, this.state.transaction);
+        this.newTransaction[e.target.name] = e.target.value;
+   	    this.setState({transaction: this.newTransaction});
+    }
+
+    saveToDB = (e) => {
+        if(this.newTransaction)
+           if(this.newTransaction[e.target.name] !== this.state.prevTransaction[e.target.name])
+                this.handleUpdateTransaction(this.newTransaction);
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -79,8 +84,9 @@ class Transaction extends React.Component {
                     <button className="ui icon button">
                         <i className="trash icon" onClick={this.onTransactionDelete}></i>
                     </button>
-                    <input type="text" name = "name" maxLength="48"
-                        value={this.state.transaction.name} onChange = {this.onInputChange}/>
+                    <input type="text" name = "name" maxLength="48" style={{borderColor:'#2185D0'}}
+                        value={this.state.transaction.name} onChange = {this.onInputChange}
+                        onBlur={this.saveToDB}/>
                 </div>
                 <ReactModal
                     isOpen={this.state.bDeleteDialogOpen}

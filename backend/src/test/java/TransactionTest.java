@@ -64,11 +64,11 @@ public class TransactionTest {
         event = eventService.add(newEvent);
         eventid = event.getId();
 
-        mihkelmock.setName("Mihkel Märtin"); mihkelmock.setNickName("Miku");mihkelmock.seteMail("mihkelmartin@gmail.com");mihkelmock.setBankAccount("");
-        peetermock.setName("Peeter Kutman"); peetermock.setNickName("Peta");
-        tonumock.setName("Tõnu Riisalo"); tonumock.setNickName("Tõnu");
-        laurimock.setName("Lauri Maisvee"); laurimock.setNickName("Lauri");
-        alvarmock.setName("Alvar Tõruke"); alvarmock.setNickName("Tõru");alvarmock.seteMail("alvar@gmail.com");alvarmock.setBankAccount("");
+        mihkelmock.setNickName("Miku");mihkelmock.seteMail("mihkelmartin@gmail.com");mihkelmock.setBankAccount("");
+        peetermock.setNickName("Peta");
+        tonumock.setNickName("Tõnu");
+        laurimock.setNickName("Lauri");
+        alvarmock.setNickName("Tõru");alvarmock.seteMail("alvar@gmail.com");alvarmock.setBankAccount("");
         taksomock.setName(taksoname);
         poesmock.setName(poesname);
         saanimock.setName(saanisoitname);

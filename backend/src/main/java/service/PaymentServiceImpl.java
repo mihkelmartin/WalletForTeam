@@ -37,10 +37,12 @@ public class PaymentServiceImpl implements PaymentService{
 
     private void initialLoad(Event event, PaymentCombination paymentCombination){
         event.getMembers().forEach(member ->
-         {if(member.getBalance() > 0)
-             paymentCombination.getCreditors().put(member.getId(), member.getBalance());
-         else if (member.getBalance() < 0)
-             paymentCombination.getDebitors().put(member.getId(), abs(member.getBalance()));
+         {if(abs(member.getBalance()) >= 0.01) {
+             if (member.getBalance() > 0)
+                 paymentCombination.getCreditors().put(member.getId(), member.getBalance());
+             else if (member.getBalance() < 0)
+                 paymentCombination.getDebitors().put(member.getId(), abs(member.getBalance()));
+         }
          });
     }
 
@@ -94,10 +96,10 @@ public class PaymentServiceImpl implements PaymentService{
                 Member payor = eventService.findMember(event, payment.getPayor());
                 Member receiver = eventService.findMember(event, payment.getReceiver());
                 if (payor != null) {
-                    payment.setPayor(payor.getName());
+                    payment.setPayor(payor.getNickName());
                 }
                 if (receiver != null) {
-                    payment.setReceiver(receiver.getName());
+                    payment.setReceiver(receiver.getNickName());
                     payment.setReceivereMail(receiver.geteMail());
                     payment.setBankAccount(receiver.getBankAccount());
                 }

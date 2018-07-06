@@ -19,14 +19,12 @@ public class Member implements Comparable<Member>, Ordered {
 
     @Id
     private String id;
-    @Size(max = 24)
-    private String name = "";
-    @Size(max = 6)
+    @Size(max = 12)
     private String nickName = "";
     @Indexed
     @Size(max = 64)
     private String eMail = "";
-    @Size(max = 34)
+    @Size(max = 64)
     private String bankAccount = "";
     private int order = 0;
     private String payor;
@@ -42,7 +40,6 @@ public class Member implements Comparable<Member>, Ordered {
     }
 
     public void update(Member member) {
-        setName(member.getName());
         setNickName(member.getNickName());
         seteMail(member.geteMail());
         setBankAccount(member.getBankAccount());
@@ -57,14 +54,6 @@ public class Member implements Comparable<Member>, Ordered {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getNickName() {
