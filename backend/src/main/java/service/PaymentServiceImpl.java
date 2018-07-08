@@ -16,6 +16,8 @@ public class PaymentServiceImpl implements PaymentService{
 
     @Autowired
     EventService eventService;
+    @Autowired
+    EmailServiceImpl emailService;
 
     @Override
     public List<Payment> calculatePayments(Event event) {
@@ -33,6 +35,31 @@ public class PaymentServiceImpl implements PaymentService{
         if(retVal == null)
             retVal = new ArrayList<>();
         return retVal;
+    }
+
+    @Override
+    public void sendPayments(Event event, List<Payment> payments) {
+        StringBuilder subject = new StringBuilder(event.getName() + " payments");
+        List<String> emails = new ArrayList<>();
+        StringBuilder content = new StringBuilder("Hello from WalletForTeam !\n\nHere are Your payments to be made.\n\n");
+        if(payments != null){
+            for(Payment payment : payments){
+                if(!emails.equals(payment.getPayorEmail()))
+                    emails.add(payment.getPayorEmail());
+                if(!emails.equals(payment.getReceivereMail()))
+                    emails.add(payment.getReceivereMail());
+                content.append(payment.getPayor() + " pays to " + payment.getReceiver() + " ");
+                content.append((double)Math.round(payment.getAmount()*100)/100d);
+                content.append(" to bankaccount " + payment.getBankAccount() + "\n");
+            }
+            if(emails.size() != 0) {
+                content.append("\n\nThank You!\nYour WalletForTeam team\nwalletforteam.herokuapp.com");
+                for(String email : emails){
+                    if(!email.isEmpty())
+                        emailService.sendSimpleMessage(email, subject.toString(), content.toString());
+                }
+            }
+        }
     }
 
     private void initialLoad(Event event, PaymentCombination paymentCombination){
@@ -97,6 +124,7 @@ public class PaymentServiceImpl implements PaymentService{
                 Member receiver = eventService.findMember(event, payment.getReceiver());
                 if (payor != null) {
                     payment.setPayor(payor.getNickName());
+                    payment.setPayorEmail(payor.geteMail());
                 }
                 if (receiver != null) {
                     payment.setReceiver(receiver.getNickName());

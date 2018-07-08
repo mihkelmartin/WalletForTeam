@@ -56,6 +56,20 @@ public class WalletForTeamRESTServices {
     }
 
     @CrossOrigin(origins = "${clientcors.url}")
+    @PostMapping(path = "/SendPayments/{eventid}/{token}")
+    @ResponseBody
+    public void sendPayments(@PathVariable String eventid, @PathVariable  String token,
+                                       @RequestBody List<Payment> payments) throws JsonProcessingException {
+        Event event = eventService.loadEvent(eventid);
+        if(event != null) {
+            if (event.validateToken(token) == SECURITY_TOKEN_VALID)
+                paymentService.sendPayments(event, payments);
+            else
+                throw new TokenNotValidException("Session expired or security token not valid");
+        }
+    }
+
+    @CrossOrigin(origins = "${clientcors.url}")
     @GetMapping(path = "/Event/find/email/{email}", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public List<Event> findEventsByEmail(@PathVariable String email) throws JsonProcessingException {

@@ -48,6 +48,23 @@ class TransactionList extends React.Component {
         this.setState({bPaymentsDialogOpen : true});
     }
 
+    sendPayments = (e) => {
+        var url = getBackEndUrl() + 'SendPayments/' + this.props.eventId + '/' + this.props.token;
+        $.ajax({
+            url: url,
+            type: "POST",
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify(this.state.payments),
+            cache: false,
+            success: function(data) {
+            }.bind(this),
+            error: function(xhr, status, err) {
+                this.props.handleRESTError(xhr);
+            }.bind(this)
+        });
+       this.closeModal(e);
+    }
+
     closeModal = (e) => {
        this.setState({bPaymentsDialogOpen : false});
     }
@@ -186,7 +203,7 @@ class TransactionList extends React.Component {
                        <div className="ui divider"></div>
                         <div className="ui two buttons">
                           <div className="ui basic blue button" onClick={this.closeModal}>Cancel</div>
-                          <div className="ui basic blue button" onClick={this.closeModal}>Send e-mails</div>
+                          <div className="ui basic blue button" onClick={this.sendPayments}>Send e-mails</div>
                         </div>
                     </div>
                 </ReactModal>

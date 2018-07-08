@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface PaymentService {
     List<Payment> calculatePayments(Event event);
+    void sendPayments(Event event, List<Payment> payments);
 }

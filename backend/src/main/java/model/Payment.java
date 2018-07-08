@@ -26,6 +26,8 @@ public class Payment implements Comparable<Payment> {
     @Min(0) @Max(999999)
     private double amount = 0.0;
     @Size(max = 64)
+    private String payorEmail = "";
+    @Size(max = 64)
     private String receivereMail = "";
     private int order = 0;
 
@@ -71,6 +73,14 @@ public class Payment implements Comparable<Payment> {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public String getPayorEmail() {
+        return payorEmail;
+    }
+
+    public void setPayorEmail(String payorEmail) {
+        this.payorEmail = payorEmail;
     }
 
     public String getReceivereMail() {
