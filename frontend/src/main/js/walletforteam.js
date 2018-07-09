@@ -46,13 +46,12 @@ class WalletForTeam extends React.Component {
 		return (
             <Router history = {history}>
                 <Switch>
-                  <Route exact path='/' render={(props) => <MainDashBoard{...props}
-                                            onEventSelected={this.handleEventSelected}
-                                            handleRESTError = {this.handleRESTError}/>}/>
                   <Route path='/EventDashBoard/:eventId/:token' render={(props) => <EventDashBoard{...props}
                         eventId = {props.match.params.eventId} token={props.match.params.token}
                         onEventSelected = {this.handleEventSelected} handleRESTError = {this.handleRESTError}/>}/>
                   <Route exact path='/error' render={(props) => <Error{...props} errorText={this.state.errorText}/>}/>
+                  <Route path='/*' render={(props) => <MainDashBoard{...props} onEventSelected={this.handleEventSelected}
+                                                                    handleRESTError = {this.handleRESTError}/>}/>
                 </Switch>
             </Router>
         )
