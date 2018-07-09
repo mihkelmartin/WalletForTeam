@@ -35,9 +35,9 @@ public class WalletForTeamRESTServices {
     LoginService loginService;
 
     @CrossOrigin(origins = "${clientcors.url}")
-    @RequestMapping(value = "/")
+    @RequestMapping(value = {"/","/EventDashBoard/{eventid}/{token}"})
     public String index() {
-        return "index.html";
+        return "/index.html";
     }
 
     @CrossOrigin(origins = "${clientcors.url}")

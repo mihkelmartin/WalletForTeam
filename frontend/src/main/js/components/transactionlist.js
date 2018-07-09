@@ -88,7 +88,7 @@ class TransactionList extends React.Component {
                     columns.push({Header: <div className = "ui center aligned inverted blue raised segment">
                                             <h4 className = "ui header">{member.nickName}</h4>
                                           </div>,
-                            minWidth: 120,
+                            minWidth: 100,
                             accessor:member.id,
                             Cell: props => (
                                     <TransactionItem
