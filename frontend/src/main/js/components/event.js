@@ -66,6 +66,10 @@ class Event extends React.Component {
        this.setState({bDeleteDialogOpen : true});
     }
 
+    onLogOut = (e) => {
+        this.props.onEventSelected('','');
+    }
+
     closeModal = (e) => {
        this.setState({bDeleteDialogOpen : false});
     }
@@ -73,13 +77,25 @@ class Event extends React.Component {
 	render() {
 		return (
             <div>
-                <div className='ui centered blue card'>
-                    <div className='content'>
-                        <div className='header'>
-                          <input type="text" maxLength="32" value={this.state.eventName}
-                             onChange={this.handleEventNameChange}/>
-                            <span className='right floated blue icon'>
-                                <i className='trash icon' onClick={this.onEventDelete} />
+                <div className="ui seven column centered grid">
+                    <div className="row">
+                        <div className = "four wide column"/>
+                        <div className = "eight wide column">
+                            <div className='ui centered blue card'>
+                                <div className='content'>
+                                    <div className='header'>
+                                        <div className='ui fluid input'>
+                                            <input type="text" maxLength="32" value={this.state.eventName}
+                                                 onChange={this.handleEventNameChange}/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className = "four wide column right aligned">
+                            <i className='ui trash large blue icon' onClick={this.onEventDelete} />
+                            <span>
+                                <i className='ui close large red icon' onClick={this.onLogOut} />
                             </span>
                         </div>
                     </div>

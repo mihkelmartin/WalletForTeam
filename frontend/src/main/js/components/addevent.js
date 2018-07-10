@@ -9,13 +9,18 @@ import {getBackEndUrl} from './getProperties';
 
 class AddEvent extends React.Component {
 
-    state = {saveButton : 'save icon', eventname : '', email : ''};
+    state = {saveButton : <button className="ui basic blue button icon" type="submit">
+                            <i className='save large icon'></i>
+                          </button>,
+            eventname : '', email : ''};
 
     setResult = (data) => {
         captcha.reset();
         if(data.id == null){
             this.setState({
-                 saveButton: 'window close red icon'
+                 saveButton: <button className="ui basic blue button icon" type="submit">
+                                <i className='window close red icon'></i>
+                             </button>
              });
 
         } else {
@@ -25,7 +30,7 @@ class AddEvent extends React.Component {
     }
     onChange = (token) => {
         this.setState({
-          saveButton: 'ui basic loading button'
+          saveButton: <div className="ui active centered inline loader"></div>
         });
 
         var url = getBackEndUrl() + 'Event/add/' + token;
@@ -75,9 +80,7 @@ class AddEvent extends React.Component {
 
                         <div className="ui one column center aligned grid">
                            <div className="column twelve wide">
-                                <button className="ui basic blue button icon" type="submit">
-                                    <i className={this.state.saveButton}></i>
-                                </button>
+                                {this.state.saveButton}
                             </div>
                         </div>
                         <ReCAPTCHA
