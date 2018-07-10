@@ -1,8 +1,5 @@
 'use strict';
-
-// tag::vars[]
 const React = require('react');
-
 import EventElement from './eventelement.js';
 
 // tag::EventList[]

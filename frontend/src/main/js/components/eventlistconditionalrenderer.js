@@ -1,6 +1,4 @@
 'use strict';
-
-
 const React = require('react');
 import EventList from './eventlist.js';
 import AddEvent from './addevent.js';

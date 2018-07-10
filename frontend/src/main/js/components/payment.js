@@ -1,5 +1,4 @@
 const React = require('react');
-
 class Payment extends React.Component {
 
 

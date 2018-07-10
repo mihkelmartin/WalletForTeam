@@ -1,4 +1,3 @@
-// tag::vars[]
 const React = require('react');
 var $ = require('jquery');
 var eventObject;

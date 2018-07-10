@@ -1,11 +1,7 @@
 'use strict';
-
-// tag::vars[]
 const React = require('react');
-
 var $ = require('jquery');
 import {getBackEndUrl} from './getProperties';
-
 import ReCAPTCHA from 'react-google-recaptcha'
 
 // tag::EventElement[]

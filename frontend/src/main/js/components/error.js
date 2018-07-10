@@ -1,4 +1,3 @@
-// tag::vars[]
 const React = require('react');
 
 class Error extends React.Component {

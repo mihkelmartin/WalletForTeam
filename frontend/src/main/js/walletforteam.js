@@ -1,6 +1,4 @@
 'use strict';
-
-// tag::vars[]
 const React = require('react');
 const ReactDOM = require('react-dom');
 
@@ -27,6 +25,13 @@ class WalletForTeam extends React.Component {
                     this.setState({errorText : 'Network error ' + xhr.responseJSON.status + '. Try again later'});
                 }
             } else {
+            if(xhr.status){
+                if(xhr.status == 403){
+                    this.setState({errorText : 'Session expired or invalid security token. Relogin to Event.'});
+                } else {
+                    this.setState({errorText : 'Oops, something went wrong ! Please relogin to an Event.'});
+                }
+            } else
                 this.setState({errorText : 'Wallet for Team service temporary unavailable. Try again later.'});
             }
         } else {
