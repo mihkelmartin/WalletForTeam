@@ -67,7 +67,18 @@ class Event extends React.Component {
     }
 
     onLogOut = (e) => {
-        this.props.onEventSelected('','');
+        var url = getBackEndUrl() + 'logout/' + this.props.eventId + '/' + this.props.token;
+        $.ajax({
+            url: url,
+            dataType: 'text',
+            cache: false,
+            success: function(data){
+                this.props.onEventSelected('','');
+            }.bind(this),
+            error: function(xhr, status, err) {
+                this.props.handleRESTError(xhr);
+            }.bind(this)
+        });
     }
 
     closeModal = (e) => {

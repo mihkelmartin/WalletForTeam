@@ -93,6 +93,22 @@ public class WalletForTeamRESTServices {
     }
 
     @CrossOrigin(origins = "${clientcors.url}")
+    @GetMapping(path = "/logout/{eventid}/{token}", produces = "text/plain")
+    @ResponseBody
+    public void loginEvent(@PathVariable String eventid, @PathVariable String token) {
+        Event event = eventService.loadEvent(eventid);
+        if(event != null) {
+            if (event.validateToken(token) == SECURITY_TOKEN_VALID) {
+                event.generateToken();
+                eventService.save(event, event);
+            }
+            else
+                throw new TokenNotValidException("Session expired or security token not valid");
+        }
+    }
+
+
+    @CrossOrigin(origins = "${clientcors.url}")
     @GetMapping(path = "/puk/{eventid}/{PUK}/{ReCAPTCHAToken}")
     @ResponseBody
     public void resetPIN(@PathVariable String eventid, @PathVariable  Long PUK, @PathVariable String ReCAPTCHAToken) {

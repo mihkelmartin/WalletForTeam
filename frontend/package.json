@@ -32,7 +32,8 @@
   },
   "scripts": {
     "watch": "webpack --watch -d",
-    "start": "webpack-dev-server --config webpack.dev.js --content-base src/main/resources/static --inline --hot"
+    "start": "webpack-dev-server --config webpack.dev.js --content-base src/main/resources/static --inline --hot",
+    "build:dev": "webpack --config webpack.dev.js"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
