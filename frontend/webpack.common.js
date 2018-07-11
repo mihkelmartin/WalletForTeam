@@ -1,19 +1,11 @@
 var path = require('path');
 
-
 module.exports = {
-    mode : 'none',
     entry: './src/main/js/walletforteam.js',
-    devtool: 'sourcemaps',
-    devServer: {
-      port: 8090,
-      historyApiFallback: true
-    },
     cache: true,
     output: {
-        path: path.join(__dirname,'/src/main/resources/static'),
-        filename: 'built/bundle.js',
-        publicPath: '/'
+        filename: 'bundle.js',
+        path: path.join(__dirname,'/src/main/resources/static/built'),
     },
     module: {
         rules: [
