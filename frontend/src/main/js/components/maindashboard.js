@@ -42,7 +42,7 @@ class MainDashBoard extends React.Component {
 
 	render() {
         return (
-            <div>
+            <div className= "ui container">
                 <div className="ui divider"></div>
                 <SearchBar currentEmail = {this.state.email}
                     onEmailChange = {this.handleEmailChange} setNewFormVisibility = {this.setNewFormVisibility}/>
