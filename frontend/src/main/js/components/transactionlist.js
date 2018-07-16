@@ -76,7 +76,7 @@ class TransactionList extends React.Component {
 
             var columns = [];
             columns.push({Header: "",
-                        minWidth: 250,
+                        minWidth: 100,
                          accessor:"transaction",
                         Cell: props => (<Transaction  eventId = {this.props.eventId}
                                             token = {this.props.token} transaction={props.value}
@@ -88,7 +88,7 @@ class TransactionList extends React.Component {
                     columns.push({Header: <div className = "ui center aligned inverted blue raised segment">
                                             <h4 className = "ui header">{member.nickName}</h4>
                                           </div>,
-                            minWidth: 100,
+                            maxWidth: 80,
                             accessor:member.id,
                             Cell: props => (
                                     <TransactionItem

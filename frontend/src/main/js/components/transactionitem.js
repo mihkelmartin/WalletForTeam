@@ -52,11 +52,11 @@ class TransactionItem extends React.Component {
             }.bind(this)
         });
     }
-    onChangeAutoCalc = (e) => {
+    onChangeAutoCalc = (bcreditAutoCalculatedCopy) => {
         // /Transactions/setAutoCalc/{eventid}/{token}/{transactionid}/{memberid}/{bAutoCalc}
         var url = getBackEndUrl() + 'Transactions/setAutoCalc/' + this.props.eventId + '/' +
                     this.props.token + '/' + this.props.transactionId + '/' + this.props.memberId +
-                    '/' + e.target.checked;
+                    '/' + bcreditAutoCalculatedCopy;
         $.ajax({
             url: url,
             dataType: 'text',
@@ -76,8 +76,9 @@ class TransactionItem extends React.Component {
         this.setState({credit : e.target.value});
     }
     onbcreditAutoCalculatedChange = (e) => {
-        this.setState({bcreditAutoCalculated : e.target.checked});
-        this.onChangeAutoCalc(e);
+        var bcreditAutoCalculatedCopy = this.state.bcreditAutoCalculated;
+        this.setState({bcreditAutoCalculated : !bcreditAutoCalculatedCopy});
+        this.onChangeAutoCalc(!bcreditAutoCalculatedCopy);
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -101,25 +102,32 @@ class TransactionItem extends React.Component {
             <div className = "two wide grey column center aligned">
                 <form onSubmit={this.onAddDebit}>
                     <div className="ui input mini">
-                       <input type="number" step="0.01" min="0" max="999999" pattern="\d+(\.\d{2})?"
-                                style={{borderColor:'#2185D0'}}
+                       <input type="number" step="0.01" min="0" max="9999" pattern="\d+(\.\d{2})?"
+                                style={{borderColor:'#2185D0',borderWidth:'1.5px', textAlign:'right',
+                                fontWeight:this.state.debit == 0.0 ? 'normal':'bold'}}
                                 value = {this.state.debit} onChange={this.onDebitChange}/>
                     </div>
                 </form>
                 <form onSubmit={this.onAddCredit}>
                     <div className="ui input mini">
-                       <input type="number" step="0.01" min="0" max="999999" pattern="\d+(\.\d{2})?"
-                       style={{borderColor:'#DB2828'}}
+                       <input type="number" step="0.01" min="0" max="9999" pattern="\d+(\.\d{2})?"
+                       style={{borderColor:'#DB2828',borderWidth:'1.5px', textAlign:'right',
+                        fontWeight:this.state.credit == 0.0 ? 'normal':'bold'}}
                        value = {this.state.credit} onChange={this.onCreditChange}/>
                     </div>
                 </form>
-                <form>
-                    <div className="ui input mini">
-                       <input type="checkbox" checked={this.state.bcreditAutoCalculated}
-                            onChange={this.onbcreditAutoCalculatedChange}/>
-                       <label>Autocalc ?</label>
-                    </div>
-                </form>
+
+                    <button disabled={this.state.bcreditAutoCalculated} onClick={this.onbcreditAutoCalculatedChange}>
+                        <i className={!this.state.bcreditAutoCalculated ?
+                                       "calculator blue icon disabled" : "calculator blue icon"}></i>
+                    </button>
+                    <span>
+                    <button disabled={!this.state.bcreditAutoCalculated} onClick={this.onbcreditAutoCalculatedChange}>
+                        <i className={this.state.bcreditAutoCalculated ?
+                                        "edit green icon disabled" : "edit green icon"}></i>
+                    </button>
+                    </span>
+
             </div>
 	    )
 	}
