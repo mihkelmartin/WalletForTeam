@@ -76,7 +76,7 @@ class TransactionList extends React.Component {
 
             var columns = [];
             columns.push({Header: "",
-                        minWidth: 100,
+                        minWidth: 150,
                          accessor:"transaction",
                         Cell: props => (<Transaction  eventId = {this.props.eventId}
                                             token = {this.props.token} transaction={props.value}
@@ -151,61 +151,63 @@ class TransactionList extends React.Component {
         }
 
 		return (
-            <div className="ui seven column centered grid">
-                <div className="row">
-                    <div className = "four wide column">
-                        <div className='ui basic content left aligned segment'>
-                            <button className='ui basic green button icon' onClick={this.handlePayments}>
-                                Payments  <i className='calculator icon' />
-                            </button>
+		    <div className="ui container"  style={{border: "1px solid #2185D0"}}>
+                <div className="ui seven column centered grid">
+                    <div className="row">
+                        <div className = "four wide column">
+                            <div className='ui basic content left aligned segment'>
+                                <button className='ui basic green button icon' onClick={this.handlePayments}>
+                                    Payments  <i className='calculator icon' />
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div className = "eight wide column">
-                        <div className='ui basic content center aligned segment'>
-                            <button className='ui basic green button icon' onClick={this.handleNewTransaction}>
-                                Add transaction  <i className='plus icon' />
-                            </button>
+                        <div className = "eight wide column">
+                            <div className='ui basic content center aligned segment'>
+                                <button className='ui basic green button icon' onClick={this.handleNewTransaction}>
+                                    Add transaction  <i className='plus icon' />
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div className = "four wide column">
-                    </div>
-            </div>
-            <ReactTable
-                showPagination={true}
-                sortable={false}
-                defaultPageSize= {5}
-                data={data}
-                columns={columns}
-                getTrProps={(state, rowInfo, column) => {
-                  return {
-                    style: {
-
-                      }
-                  };
-                }}
-                getTheadTrProps={(state, rowInfo, column) => {
-                  return {
-                    style: {
-                        background:    '#2185D0'
-                    }
-                  };
-                }}
-            />
-            <ReactModal
-                isOpen={this.state.bPaymentsDialogOpen}
-                onRequestClose={this.closeModal}
-                style={dialogStyles}
-                contentLabel='Create payments'>
-                <div>
-                        {content}
-                   <div className="ui divider"></div>
-                    <div className="ui two buttons">
-                      <div className="ui basic blue button" onClick={this.closeModal}>Cancel</div>
-                      <div className="ui basic blue button" onClick={this.sendPayments}>Send e-mails</div>
+                        <div className = "four wide column">
+                        </div>
                     </div>
                 </div>
-            </ReactModal>
-        </div>
+                <ReactTable
+                    showPagination={true}
+                    sortable={false}
+                    defaultPageSize= {5}
+                    data={data}
+                    columns={columns}
+                    getTrProps={(state, rowInfo, column) => {
+                      return {
+                        style: {
+
+                          }
+                      };
+                    }}
+                    getTheadTrProps={(state, rowInfo, column) => {
+                      return {
+                        style: {
+                            background:    '#2185D0'
+                        }
+                      };
+                    }}
+                />
+                <ReactModal
+                    isOpen={this.state.bPaymentsDialogOpen}
+                    onRequestClose={this.closeModal}
+                    style={dialogStyles}
+                    contentLabel='Create payments'>
+                    <div>
+                            {content}
+                       <div className="ui divider"></div>
+                        <div className="ui two buttons">
+                          <div className="ui basic blue button" onClick={this.closeModal}>Cancel</div>
+                          <div className="ui basic blue button" onClick={this.sendPayments}>Send e-mails</div>
+                        </div>
+                    </div>
+                </ReactModal>
+            </div>
 		)
 	}
 }

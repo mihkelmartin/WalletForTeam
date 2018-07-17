@@ -97,7 +97,7 @@ class Member extends React.Component {
                                                           </option> );
 		return (
             <div className="row"  style={{height: "3em"}}>
-				<div className = "three wide light column center aligned" style={{padding: "0.5em"}}>
+				<div className = "four wide light column center aligned" style={{padding: "0.5em"}}>
 				    <div className="ui fluid left action input">
                         <button className="ui icon button">
                             <i className="trash icon" onClick={this.onMemberDelete}></i>
@@ -110,7 +110,7 @@ class Member extends React.Component {
                         </button>
                     </div>
                 </div>
-				<div className = "two wide light column center aligned" style={{padding: "0.5em"}}>
+				<div className = "three wide light column center aligned" style={{padding: "0.5em"}}>
                     <select className="ui dropdown" value={this.state.member.payor} name="payor"
                         style={{borderColor:'#2185D0'}} onChange = {this.onInputChange}>
                         {options}
