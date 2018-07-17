@@ -151,63 +151,61 @@ class TransactionList extends React.Component {
         }
 
 		return (
-            <div className= "ui container">
-                <div className="ui seven column centered grid">
-                    <div className="row">
-                        <div className = "four wide column">
-                            <div className='ui basic content left aligned segment'>
-                                <button className='ui basic green button icon' onClick={this.handlePayments}>
-                                    Payments  <i className='calculator icon' />
-                                </button>
-                            </div>
+            <div className="ui seven column centered grid">
+                <div className="row">
+                    <div className = "four wide column">
+                        <div className='ui basic content left aligned segment'>
+                            <button className='ui basic green button icon' onClick={this.handlePayments}>
+                                Payments  <i className='calculator icon' />
+                            </button>
                         </div>
-                        <div className = "eight wide column">
-                            <div className='ui basic content center aligned segment'>
-                                <button className='ui basic green button icon' onClick={this.handleNewTransaction}>
-                                    Add transaction  <i className='plus icon' />
-                                </button>
-                            </div>
+                    </div>
+                    <div className = "eight wide column">
+                        <div className='ui basic content center aligned segment'>
+                            <button className='ui basic green button icon' onClick={this.handleNewTransaction}>
+                                Add transaction  <i className='plus icon' />
+                            </button>
                         </div>
-                        <div className = "four wide column">
-                        </div>
+                    </div>
+                    <div className = "four wide column">
+                    </div>
+            </div>
+            <ReactTable
+                showPagination={true}
+                sortable={false}
+                defaultPageSize= {5}
+                data={data}
+                columns={columns}
+                getTrProps={(state, rowInfo, column) => {
+                  return {
+                    style: {
+
+                      }
+                  };
+                }}
+                getTheadTrProps={(state, rowInfo, column) => {
+                  return {
+                    style: {
+                        background:    '#2185D0'
+                    }
+                  };
+                }}
+            />
+            <ReactModal
+                isOpen={this.state.bPaymentsDialogOpen}
+                onRequestClose={this.closeModal}
+                style={dialogStyles}
+                contentLabel='Create payments'>
+                <div>
+                        {content}
+                   <div className="ui divider"></div>
+                    <div className="ui two buttons">
+                      <div className="ui basic blue button" onClick={this.closeModal}>Cancel</div>
+                      <div className="ui basic blue button" onClick={this.sendPayments}>Send e-mails</div>
                     </div>
                 </div>
-                <ReactTable
-                    showPagination={true}
-                    sortable={false}
-                    defaultPageSize= {5}
-                    data={data}
-                    columns={columns}
-                    getTrProps={(state, rowInfo, column) => {
-                      return {
-                        style: {
-
-                          }
-                      };
-                    }}
-                    getTheadTrProps={(state, rowInfo, column) => {
-                      return {
-                        style: {
-                            background:    '#2185D0'
-                        }
-                      };
-                    }}
-                />
-                <ReactModal
-                    isOpen={this.state.bPaymentsDialogOpen}
-                    onRequestClose={this.closeModal}
-                    style={dialogStyles}
-                    contentLabel='Create payments'>
-                    <div className= "ui container">
-                            {content}
-                       <div className="ui divider"></div>
-                        <div className="ui two buttons">
-                          <div className="ui basic blue button" onClick={this.closeModal}>Cancel</div>
-                          <div className="ui basic blue button" onClick={this.sendPayments}>Send e-mails</div>
-                        </div>
-                    </div>
-                </ReactModal>
-            </div>
+            </ReactModal>
+        </div>
 		)
 	}
 }

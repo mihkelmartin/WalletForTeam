@@ -96,8 +96,8 @@ class Member extends React.Component {
                                                             {member.nickName}
                                                           </option> );
 		return (
-            <div className="row">
-				<div className = "three wide light column center aligned">
+            <div className="row"  style={{height: "3em"}}>
+				<div className = "three wide light column center aligned" style={{padding: "0.5em"}}>
 				    <div className="ui fluid left action input">
                         <button className="ui icon button">
                             <i className="trash icon" onClick={this.onMemberDelete}></i>
@@ -110,13 +110,13 @@ class Member extends React.Component {
                         </button>
                     </div>
                 </div>
-				<div className = "two wide light column center aligned">
+				<div className = "two wide light column center aligned" style={{padding: "0.5em"}}>
                     <select className="ui dropdown" value={this.state.member.payor} name="payor"
                         style={{borderColor:'#2185D0'}} onChange = {this.onInputChange}>
                         {options}
                     </select>
                 </div>
-				<div className = "three wide light column center aligned">
+				<div className = "three wide light column center aligned" style={{padding: "0.5em"}}>
                     <div className = "ui fluid input">
                         <input type = "email" name="eMail" maxLength="64" style={{borderColor:'#2185D0'}}
                           value={this.state.member.eMail} onChange = {this.onInputChange}
@@ -126,7 +126,7 @@ class Member extends React.Component {
                         </button>
                     </div>
                 </div>
-				<div className = "four wide light column center aligned">
+				<div className = "four wide light column center aligned" style={{padding: "0.5em"}}>
 				    <div className = "ui fluid input">
                         <input type = "text" name="bankAccount" maxLength="34" style={{borderColor:'#2185D0'}}
                           value={this.state.member.bankAccount} onChange = {this.onInputChange}
@@ -136,7 +136,7 @@ class Member extends React.Component {
                         </button>
                     </div>
                 </div>
-                <div className = "two wide light column center aligned">
+                <div className = "two wide light column center aligned" style={{padding: "0.5em"}}>
                     <p>{parseFloat(this.state.member.debit-this.state.member.credit).toFixed(2)}</p>
                 </div>
                 <ReactModal

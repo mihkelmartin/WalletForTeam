@@ -13,6 +13,7 @@ export const dialogStyles = {
     bottom                : 'auto',
     marginRight           : '-50%',
     transform             : 'translate(-50%, -50%)',
-    borderColor          : '#2185D0'
+    borderColor           : '#2185D0',
+    borderWidth           : '2px'
   }
 };

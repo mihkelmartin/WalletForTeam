@@ -11,7 +11,8 @@ import {getBackEndUrl} from './getProperties';
 // tag::EventDashBoard[]
 class EventDashBoard extends React.Component {
 
-	state = {members: [], transactions : []};
+	state = {members: [], transactions : [], bMenuTransactions : true };
+
     LoadMembers = () => {
         var url = getBackEndUrl() + 'Members/' + this.props.eventId + '/' + this.props.token;
         $.ajax({
@@ -58,7 +59,41 @@ class EventDashBoard extends React.Component {
     componentDidMount() {
         this.LoadMembers();
     }
+
+    onTransactionItemClick = (e) => {
+        if(!this.state.bMenuTransactions)
+            this.setState({bMenuTransactions : true});
+    }
+
+    onMemberItemClick = (e) => {
+        if(this.state.bMenuTransactions)
+            this.setState({bMenuTransactions : false});
+    }
+
+
  	render() {
+        var menuContent = <div>
+                          <TransactionList eventId = {this.props.eventId} token = {this.props.token}
+                              members={this.state.members}
+                              transactions={this.state.transactions}
+                              LoadMembers={this.LoadMembers}
+                              handleRESTError = {this.props.handleRESTError}/>
+                          <div className="ui divider"></div>
+                          </div>;
+        var transactionItem = 'item basic active';
+        var memberItem = 'item basic';
+        if(!this.state.bMenuTransactions){
+            menuContent = <div>
+                          <MemberList eventId = {this.props.eventId} token = {this.props.token}
+                              members={this.state.members}
+                              LoadMembers={this.LoadMembers}
+                              handleRESTError = {this.props.handleRESTError}/>
+                          <div className="ui divider"></div>
+                          </div>;
+            transactionItem = 'item basic';
+            memberItem = 'item basic active';
+ 	    }
+
 		return (
 		    <div className= "ui container">
 		        <div className="ui divider"></div>
@@ -66,18 +101,12 @@ class EventDashBoard extends React.Component {
 		            onEventSelected = {this.props.onEventSelected}
 		            handleRESTError = {this.props.handleRESTError}/>
                 <div className="ui divider"></div>
-                <TransactionList eventId = {this.props.eventId} token = {this.props.token}
-                        members={this.state.members}
-                        transactions={this.state.transactions}
-                        LoadMembers={this.LoadMembers}
-                        handleRESTError = {this.props.handleRESTError}/>
-                <div className="ui divider"></div>
-                <MemberList eventId = {this.props.eventId} token = {this.props.token}
-                    members={this.state.members}
-                    LoadMembers={this.LoadMembers}
-                    handleRESTError = {this.props.handleRESTError}/>
-                <div className="ui divider"></div>
-		    </div>
+                <div className="ui two item basic blue tabular menu">
+                    <a className={transactionItem} onClick={this.onTransactionItemClick}>Transactions</a>
+                    <a className={memberItem} onClick={this.onMemberItemClick}>Members/Balance</a>
+                </div>
+                {menuContent}
+            </div>
 		)
 	}
 }

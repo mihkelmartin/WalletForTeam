@@ -104,9 +104,9 @@ class Event extends React.Component {
                             </div>
                         </div>
                         <div className = "four wide column right aligned">
-                            <i className='ui trash large blue icon' onClick={this.onEventDelete} />
+                            <i className='ui trash big blue icon' onClick={this.onEventDelete} />
                             <span>
-                                <i className='ui close large red icon' onClick={this.onLogOut} />
+                                <i className='ui close big red icon' onClick={this.onLogOut} />
                             </span>
                         </div>
                     </div>
