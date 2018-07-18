@@ -10,7 +10,7 @@ import {getBackEndUrl} from './getProperties';
 class AddEvent extends React.Component {
 
     state = {saveButton : <button className="ui basic blue button icon" type="submit">
-                            <i className='save large icon'></i>
+                            <i className='save large green icon'></i>
                           </button>,
             eventname : '', email : ''};
 

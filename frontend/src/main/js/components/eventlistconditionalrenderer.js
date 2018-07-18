@@ -9,7 +9,7 @@ export function EventListConditionalRender(props){
 
     const plusbutton =  <div key ="plusButton" className='ui basic content center aligned segment'>
                             <button className='ui basic blue button icon' onClick={setNewFormVisibility}>
-                                Add event  <i className='plus icon' />
+                                Add event  <i className='plus green icon' />
                             </button>
                         </div>;
 

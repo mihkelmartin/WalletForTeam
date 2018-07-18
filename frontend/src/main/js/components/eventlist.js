@@ -12,7 +12,7 @@ class EventList extends React.Component {
                 handleRESTError={this.props.handleRESTError}/>
         );
         return (
-            <div className='ui grid center aligned'>
+            <div>
                 {events}
             </div>
         )

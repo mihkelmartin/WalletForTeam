@@ -90,7 +90,7 @@ class EventElement extends React.Component{
                                 value={this.state.pin} onChange={this.onPinChange} onBlur={this.onPinBlur}
                                 onFocus={this.onPinFocus}/>
                             <button className="ui basic blue icon button" type="submit">
-                                <i className="folder open icon"></i>
+                                <i className="folder open green icon"></i>
                             </button>
                         </div>;
         } else {
@@ -105,25 +105,22 @@ class EventElement extends React.Component{
         }
 
 		return (
-			<div className="row" >
-                <div className = "five wide column">
-                    <div className="ui card">
-                        <h4 className="ui blue header">{this.props.event.name}</h4>
-                        <a className="ui label mini left aligned" name="PUK" onClick={this.onSubmit}>Reset PIN with PUK</a>
-                    </div>
-                </div>
-                <div className = "three wide column middle aligned">
+            <div>
+                <div className="ui centered card">
+                    <h4 className="ui blue header center aligned" style={{paddingTop: "0.5em"}}>{this.props.event.name}</h4>
                     <form name="PIN" onSubmit={this.onSubmit}>
                         {PINInput}
                     </form>
-				</div>
+                    <a className="ui label mini left aligned" name="PUK"
+                        onClick={this.onSubmit}>Reset PIN with PUK</a>
+                </div>
                 <ReCAPTCHA
                   ref={(el) => { this.captcha = el; }}
                   size="invisible"
                   sitekey="6LcyQmIUAAAAAHmSz5TvnQLXMGpjwjMVhEYif9la"
                   onChange={this.onChange}
                 />
-			</div>
+            </div>
 		)
 	}
 }
