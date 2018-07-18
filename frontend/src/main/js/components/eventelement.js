@@ -106,7 +106,7 @@ class EventElement extends React.Component{
 
 		return (
 			<div className="row" >
-                <div className = "three wide column">
+                <div className = "five wide column">
                     <div className="ui card">
                         <h4 className="ui blue header">{this.props.event.name}</h4>
                         <a className="ui label mini left aligned" name="PUK" onClick={this.onSubmit}>Reset PIN with PUK</a>
