@@ -18,8 +18,9 @@ class SearchBar extends React.Component {
 	render() {
 		return (
 		<form onSubmit={this.onSubmit}>
+		<div className="ui container">
             <div className="ui blue centered header">
-                <div className="ui right large action input">
+                <div className="ui right massive action input">
                     <input ref="eventEmail" type="text" autoFocus
                             placeholder="Event creator e-mail..." value = {this.props.email}
                                 onFocus={this.setNewFormVisibility}/>
@@ -28,6 +29,7 @@ class SearchBar extends React.Component {
                     </button>
                 </div>
             </div>
+        </div>
         </form>
         )
 	}

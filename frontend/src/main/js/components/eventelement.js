@@ -106,7 +106,7 @@ class EventElement extends React.Component{
 
 		return (
             <div>
-                <div className="ui centered card">
+                <div className="ui centered blue card">
                     <h4 className="ui blue header center aligned" style={{paddingTop: "0.5em"}}>{this.props.event.name}</h4>
                     <form name="PIN" onSubmit={this.onSubmit}>
                         {PINInput}
