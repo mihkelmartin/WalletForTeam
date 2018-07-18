@@ -23,16 +23,21 @@ class SearchBar extends React.Component {
             <div className="ui blue centered header">
                 <Mobile>
                     <div className="ui right fluid massive action input">
-                        <SearchButton this={this}/>
+                        <input name="eventEmail" type="text" autoFocus
+                            placeholder="Event creator e-mail..." value = {this.props.email}
+                            onFocus={this.setNewFormVisibility}/>
+                        <button className="ui basic blue icon button" type="submit">
+                            <i className="search large green icon"></i>
+                        </button>
                     </div>
                 </Mobile>
                 <Default>
                     <div className="ui right huge action input">
                         <input name="eventEmail" type="text" autoFocus
-                                placeholder="Event creator e-mail..." value = {this.props.email}
-                                    onFocus={this.setNewFormVisibility}/>
+                            placeholder="Event creator e-mail..." value = {this.props.email}
+                            onFocus={this.setNewFormVisibility}/>
                         <button className="ui basic blue icon button" type="submit">
-                            <i className="search large green icon" ></i>
+                            <i className="search large green icon"></i>
                         </button>
                     </div>
                 </Default>
@@ -44,14 +49,3 @@ class SearchBar extends React.Component {
 }
 
 export default SearchBar;
-
-function SearchButton (props){
-    return  <div>
-                <input name="eventEmail" type="text" autoFocus
-                    placeholder="Event creator e-mail..." value = {props.this.props.email}
-                    onFocus={props.this.setNewFormVisibility}/>
-                <button className="ui basic blue icon button" >
-                    <i className="search large green icon" type="submit"></i>
-                </button>
-            </div>;
-}
