@@ -28,7 +28,8 @@
     "react-google-recaptcha":"^0.11.1",
     "react-async-script":"^0.9.1",
     "react-modal":"^3.4.5",
-    "react-table":"^6.8.6"
+    "react-table":"^6.8.6",
+    "react-responsive":"^5.0.0"
   },
   "scripts": {
     "watch": "webpack --watch -d",

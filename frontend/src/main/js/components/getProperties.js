@@ -1,3 +1,6 @@
+const React = require('react');
+import Responsive from 'react-responsive';
+
 export const getBackEndUrl=()=>{
     if(process.env.NODE_ENV === 'production')
         return 'https://walletforteam.herokuapp.com/';
@@ -17,3 +20,12 @@ export const dialogStyles = {
     borderWidth           : '2px'
   }
 };
+
+
+const Mobile = props => <Responsive {...props} maxWidth={767} />;
+const Default = props => <Responsive {...props} minWidth={768} />;
+
+export {
+    Mobile,
+    Default
+}

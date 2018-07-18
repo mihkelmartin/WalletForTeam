@@ -1,8 +1,9 @@
 'use strict';
 const React = require('react');
 var $ = require('jquery');
-import {getBackEndUrl} from './getProperties';
+import {getBackEndUrl, Mobile, Default} from './getProperties';
 import ReCAPTCHA from 'react-google-recaptcha'
+
 
 // tag::EventElement[]
 class EventElement extends React.Component{
@@ -106,13 +107,17 @@ class EventElement extends React.Component{
 
 		return (
             <div>
-                <div className="ui centered blue card">
-                    <h4 className="ui blue header center aligned" style={{paddingTop: "0.5em"}}>{this.props.event.name}</h4>
-                    <form name="PIN" onSubmit={this.onSubmit}>
-                        {PINInput}
-                    </form>
-                    <a className="ui label mini left aligned" name="PUK"
-                        onClick={this.onSubmit}>Reset PIN with PUK</a>
+                <div className="ui container" style={{padding: "1.0em"}}>
+                    <Mobile>
+                        <div className="ui centered fluid blue card">
+                        <EventContainer this={this} PINInput={PINInput}/>
+                        </div>
+                    </Mobile>
+                    <Default>
+                        <div className="ui centered blue card">
+                        <EventContainer this={this} PINInput={PINInput}/>
+                        </div>
+                    </Default>
                 </div>
                 <ReCAPTCHA
                   ref={(el) => { this.captcha = el; }}
@@ -125,4 +130,14 @@ class EventElement extends React.Component{
 	}
 }
 export default EventElement;
-// end::EventElement[]
+
+function EventContainer (props){
+    return  <div>
+                <h4 className="ui blue header center aligned" style={{paddingTop: "0.5em"}}>{props.this.props.event.name}</h4>
+                <form name="PIN" onSubmit={props.this.onSubmit}>
+                    {props.PINInput}
+                </form>
+                <a className="ui label mini left aligned" name="PUK"
+                    onClick={props.this.onSubmit}>Reset PIN with PUK</a>
+            </div>;
+}
