@@ -22,8 +22,8 @@ export const dialogStyles = {
 };
 
 
-const Mobile = props => <Responsive {...props} minResolution="3dppx"/>;
-const Default = props => <Responsive {...props} maxResolution="3dppx" />;
+const Mobile = props => <Responsive {...props} minResolution="2.1dppx"/>;
+const Default = props => <Responsive {...props} maxResolution="2.0dppx" />;
 
 export {
     Mobile,
