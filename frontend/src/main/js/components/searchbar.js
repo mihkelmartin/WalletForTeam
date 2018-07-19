@@ -22,24 +22,10 @@ class SearchBar extends React.Component {
 		<div className="ui container">
             <div className="ui blue centered header">
                 <Mobile>
-                    <div className="ui right fluid massive action input">
-                        <input name="eventEmail" type="text" autoFocus
-                            placeholder="Event creator e-mail..." value = {this.props.email}
-                            onFocus={this.setNewFormVisibility}/>
-                        <button className="ui basic blue icon button" type="submit">
-                            <i className="search large green icon"></i>
-                        </button>
-                    </div>
+                    <SearchBarInput this={this} uiInputSize={"ui right fluid massive action input"}/>
                 </Mobile>
                 <Default>
-                    <div className="ui right huge action input">
-                        <input name="eventEmail" type="text" autoFocus
-                            placeholder="Event creator e-mail..." value = {this.props.email}
-                            onFocus={this.setNewFormVisibility}/>
-                        <button className="ui basic blue icon button" type="submit">
-                            <i className="search large green icon"></i>
-                        </button>
-                    </div>
+                    <SearchBarInput this={this} uiInputSize={"ui right huge action input"}/>
                 </Default>
             </div>
         </div>
@@ -49,3 +35,14 @@ class SearchBar extends React.Component {
 }
 
 export default SearchBar;
+
+function SearchBarInput (props){
+    return  <div className={props.uiInputSize}>
+                <input name="eventEmail" type="text" autoFocus
+                    placeholder="Event creator e-mail..." value = {props.this.props.email}
+                    onFocus={props.this.setNewFormVisibility}/>
+                <button className="ui basic blue icon button" type="submit">
+                    <i className="search large green icon"></i>
+                </button>
+            </div>;
+}

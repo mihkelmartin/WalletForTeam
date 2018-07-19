@@ -83,39 +83,23 @@ class EventElement extends React.Component{
     }
 
 	render() {
-        var PINInput;
-        if(this.state.loginError === false){
-            PINInput = <div className="ui fluid right action input">
-                            <input ref="EventPIN" type="number" min="0" max="999999999"
-                                placeholder="Enter PIN and press ENTER"
-                                value={this.state.pin} onChange={this.onPinChange} onBlur={this.onPinBlur}
-                                onFocus={this.onPinFocus}/>
-                            <button className="ui basic blue icon button" type="submit">
-                                <i className="folder open green icon"></i>
-                            </button>
-                        </div>;
-        } else {
-            PINInput =  <div className = "ui fluid right error action input">
-                            <input ref="EventPIN" type="number" min="0" max="999999999" placeholder="Incorrect PIN"
-                                value={this.state.pin} onChange={this.onPinChange} onBlur={this.onPinBlur}
-                                    onFocus={this.onPinFocus}/>
-                           <button className="ui basic blue icon button" type="submit">
-                                <i className="folder open icon"></i>
-                            </button>
-                        </div>;
-        }
+
 
 		return (
             <div>
                 <div className="ui container" style={{padding: "1.0em"}}>
                     <Mobile>
-                        <div className="ui centered fluid blue card">
-                        <EventContainer this={this} PINInput={PINInput}/>
+                        <div className="ui centered blue card">
+                            <h2 className="ui blue header center aligned" style={{paddingTop: "0.5em"}}>{this.props.event.name}</h2>
+                            <EventContainer this={this} uiInputSize = "ui fluid big right action input"
+                                uiLabelSize = "ui fluid label left aligned"/>
                         </div>
                     </Mobile>
                     <Default>
                         <div className="ui centered blue card">
-                        <EventContainer this={this} PINInput={PINInput}/>
+                            <h4 className="ui blue header center aligned" style={{paddingTop: "0.5em"}}>{this.props.event.name}</h4>
+                            <EventContainer this={this} uiInputSize = "ui fluid right action input"
+                                uiLabelSize = "ui fluid mini label left aligned"/>
                         </div>
                     </Default>
                 </div>
@@ -133,11 +117,34 @@ export default EventElement;
 
 function EventContainer (props){
     return  <div>
-                <h4 className="ui blue header center aligned" style={{paddingTop: "0.5em"}}>{props.this.props.event.name}</h4>
                 <form name="PIN" onSubmit={props.this.onSubmit}>
-                    {props.PINInput}
+                    <PINInput this={props.this} uiInputSize = {props.uiInputSize} />
                 </form>
-                <a className="ui label mini left aligned" name="PUK"
+                <a className={props.uiLabelSize} name="PUK"
                     onClick={props.this.onSubmit}>Reset PIN with PUK</a>
             </div>;
+}
+
+
+function PINInput(props){
+        if(props.this.state.loginError === false){
+            return  <div className = {props.uiInputSize}>
+                        <input type="number" min="0" max="999999999"
+                            placeholder="Enter PIN and press ENTER"
+                            value={props.this.state.pin} onChange={props.this.onPinChange} onBlur={props.this.onPinBlur}
+                            onFocus={props.this.onPinFocus}/>
+                        <button className="ui basic blue icon button" type="submit">
+                            <i className="folder open green icon"></i>
+                        </button>
+                    </div>;
+        } else {
+            return  <div className = {props.uiInputSize + " error"}>
+                       <input type="number" min="0" max="999999999" placeholder="Incorrect PIN"
+                            value={props.this.state.pin} onChange={props.this.onPinChange} onBlur={props.this.onPinBlur}
+                                onFocus={props.this.onPinFocus}/>
+                       <button className="ui basic blue icon button" type="submit">
+                            <i className="folder open green icon"></i>
+                       </button>
+                    </div>;
+        }
 }
