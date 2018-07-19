@@ -88,20 +88,18 @@ class EventElement extends React.Component{
 		return (
             <div>
                 <div className="ui container" style={{padding: "1.0em"}}>
-                    <Mobile>
-                        <div className="ui centered blue card">
-                            <h2 className="ui blue header center aligned" style={{paddingTop: "0.5em"}}>{this.props.event.name}</h2>
-                            <EventContainer this={this} uiInputSize = "ui fluid big right action input"
+                    <div className="ui centered blue card">
+                        <Mobile>
+                            <h1 className="ui blue header center aligned" style={{paddingTop: "0.5em"}}>{this.props.event.name}</h1>
+                            <EventContainer this={this} uiInputSize = "ui fluid massive right action input"
                                 uiLabelSize = "ui fluid label left aligned"/>
-                        </div>
-                    </Mobile>
-                    <Default>
-                        <div className="ui centered blue card">
+                        </Mobile>
+                        <Default>
                             <h4 className="ui blue header center aligned" style={{paddingTop: "0.5em"}}>{this.props.event.name}</h4>
                             <EventContainer this={this} uiInputSize = "ui fluid right action input"
                                 uiLabelSize = "ui fluid mini label left aligned"/>
-                        </div>
-                    </Default>
+                        </Default>
+                    </div>
                 </div>
                 <ReCAPTCHA
                   ref={(el) => { this.captcha = el; }}
@@ -130,7 +128,7 @@ function PINInput(props){
         if(props.this.state.loginError === false){
             return  <div className = {props.uiInputSize}>
                         <input type="number" min="0" max="999999999"
-                            placeholder="Enter PIN and press ENTER"
+                            placeholder="Enter PIN"
                             value={props.this.state.pin} onChange={props.this.onPinChange} onBlur={props.this.onPinBlur}
                             onFocus={props.this.onPinFocus}/>
                         <button className="ui basic blue icon button" type="submit">
