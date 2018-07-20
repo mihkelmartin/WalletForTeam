@@ -88,18 +88,20 @@ class EventElement extends React.Component{
 		return (
             <div>
                 <div className="ui container" style={{padding: "1.0em"}}>
-                    <div className="ui centered blue card">
                         <Mobile>
-                            <h1 className="ui blue header center aligned" style={{paddingTop: "0.5em"}}>{this.props.event.name}</h1>
-                            <EventContainer this={this} uiInputSize = "ui fluid massive right action input"
-                                uiLabelSize = "ui fluid label left aligned"/>
+                            <div className="ui centered blue card" style={{width:"600px"}}>
+                                <h1 className="ui blue header center aligned" style={{paddingTop: "0.5em", fontSize:"34px"}}>{this.props.event.name}</h1>
+                                <EventContainer this={this} uiInputSize = "ui fluid massive right action input"
+                                    uiLabelSize = "ui fluid large label left aligned"/>
+                            </div>
                         </Mobile>
                         <Default>
-                            <h4 className="ui blue header center aligned" style={{paddingTop: "0.5em"}}>{this.props.event.name}</h4>
-                            <EventContainer this={this} uiInputSize = "ui fluid right action input"
-                                uiLabelSize = "ui fluid mini label left aligned"/>
+                            <div className="ui centered blue card">
+                                <h3 className="ui blue header center aligned" style={{paddingTop: "0.5em"}}>{this.props.event.name}</h3>
+                                <EventContainer this={this} uiInputSize = "ui fluid right action input"
+                                    uiLabelSize = "ui fluid mini label left aligned"/>
+                            </div>
                         </Default>
-                    </div>
                 </div>
                 <ReCAPTCHA
                   ref={(el) => { this.captcha = el; }}
